@@ -1,0 +1,9 @@
+@media (min-width: 320px) {
+  .footer {
+    max-width: 768px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    height: 150px; } }
+
+/*# sourceMappingURL=footer.css.map */
