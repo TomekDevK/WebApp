@@ -10,7 +10,7 @@ class Header extends Component {
         super ()
         this.state = {
             formStep: 1,
-            q1: 0,
+            q1: 'tak',
             q2: 0,
             q3: 0,
             q4: 0,
@@ -29,9 +29,55 @@ class Header extends Component {
             q17: 0 
         }
     }
+    // Selector input radio on every render in form next/back
+    componentDidMount () {
+        console.log(this.state.q1)
+        var that = this
+        $('input[type=radio]').click(function(){
+            switch(this.name){
+                case 'q1':
+                    console.log(this.value)
+                    that.setState({q1: this.value})
+                    break;
+                case 'q2':
+                    console.log(this.value)
+                    that.setState({q2: this.value})
+                    break;
+                case 'q3':
+                    console.log(this.value)
+                    that.setState({q3: this.value})
+                    break;
+                case 'q4':
+                    console.log(this.value)
+                    that.setState({q4: this.value})
+                    break;
+                case 'q5':
+                    break;
+                case 'q6':
+                    break;
+                case 'q7':
+                    break;
+                case 'q8':
+                    break;
+                case 'q9':
+                    break;
+                case 'q10':
+                    break;
+                case 'q11':
+                    break;
+                case 'q12':
+                    break;
+                case 'q13':
+                    break;
+                case 'q14':
+                    break;
+            }
+        })
+    }
 
     nextFormHandler = (e) => {
         e.preventDefault()
+        console.log(this.state.q1)
         let formStep = this.state.formStep
         if( formStep === 1) {
             formStep = 2
