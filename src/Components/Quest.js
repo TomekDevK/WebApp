@@ -5,11 +5,19 @@ import {Link} from 'react-router-dom'
 //styles
 
 class Header extends Component {
+    constructor () {
+        super ()
+        this.state = {
+            formStep: 1,
+            q1a1: 0,
+
+        }
+    }
 
 
     render() {
 
-
+        const {formStep} = this.state
 
         const firstStep = formStep === 1
         ?
