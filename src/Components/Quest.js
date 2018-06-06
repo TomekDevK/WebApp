@@ -8,7 +8,7 @@ class Header extends Component {
         super ()
         this.state = {
             formStep: 1,
-            questionNumber: 0,
+            questionNumber: 1,
             answers: []
         }
     }
@@ -27,6 +27,7 @@ class Header extends Component {
         e.preventDefault()
         let formStep = this.state.formStep
         let answers = this.state.answers
+        let questionNumber = this.questionNumber
         if( formStep === 1) {
             formStep = 2
         }else {
@@ -35,8 +36,12 @@ class Header extends Component {
         var that = this
         $(function(){
             $('input[type=radio]').click(function(){
-                answers[Number(this.name)] = this.value
+                answers[Number(this.name)-1] = this.value
             })
+        })
+        $(function(){
+            $('.question-container').hide()
+            $(`.question-container:nth-child(`questionNumber`)`).show()
         })
         this.setState({
             formStep: formStep,
@@ -56,6 +61,12 @@ class Header extends Component {
             formStep: formStep
         })
     }
+
+    updateSlider = () => {
+        document.getElementById('sliderq2').innerHTML = document.getElementById('q2a1').value
+    }
+
+
 
     render() {
 
@@ -81,28 +92,28 @@ class Header extends Component {
                     <div className='question-container'>
                         <p>1. Płeć :</p>
                         <div className='first-step-input'>
-                            <input type='radio' id='q1a1' name='1' value='male' />
-                            <label for='q1a1'>Mężczyzna</label>
                             <input type='radio' id='q1a2' name='1' value='female' />
                             <label for='q1a2'>Kobieta</label>
+                            <input type='radio' id='q1a1' name='1' value='male' />
+                            <label for='q1a1'>Mężczyzna</label>
                         </div>
                     </div>
                     <div className='question-container'>
-                        <p>2. Który rok studiów  :</p>
+                        <p>2. Rok urodzenia :</p>
                         <div className='first-step-input'>
-                            <input type='radio' id='q2a1' name='2' value='male' />
-                            <label for='q2a1'>sample</label>
-                            <input type='radio' id='q2a2' name='2' value='female' />
-                            <label for='q2a2'>sample</label>
+                            <input type='range' id='q2a1' name='2' min='1950' max='2018' step='1' onChange={this.updateSlider} />
+                            <span id='sliderq2'>1950</span>
                         </div>
                     </div>
                     <div className='question-container'>
-                        <p>3. Stacjonarne /niestacjonarne</p>
+                        <p>3. Skąd Pan/-i pochodzi?</p>
                         <div className='first-step-input'>
-                            <input type='radio' id='q3a1' name='3' value='male' />
-                            <label for='q3a1'>sample</label>
-                            <input type='radio' id='q3a2' name='3' value='female' />
-                            <label for='q3a2'>sample</label>
+                            <input type='radio' id='q3a1' name='3' value='countryside' />
+                            <label for='q3a1'>Wieś</label>
+                            <input type='radio' id='q3a2' name='3' value='smallcity' />
+                            <label for='q3a2'>Małe miasto (do 50 tys. mieszkańców)</label>
+                            <input type='radio' id='q3a2' name='3' value='bigcity' />
+                            <label for='q3a2'>Duże miasto (powyżej 50 tys. mieszkańców)</label>
                         </div>
                     </div>
                     <div className='question-container'>
