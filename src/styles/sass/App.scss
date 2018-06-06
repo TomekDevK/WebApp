@@ -1,10 +1,83 @@
 @media(min-width:320px) {
     .App {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 128px;
+        height: 100vh;
+        background: linear-gradient(rgba(250, 250, 250, 0.993),rgba(238, 238, 238, 0.932))
+    }
+    .header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        max-width: 700px;
+        height: 150px;
+        width: 100%;
+    }
+    .main {
         max-width: 768px;
         margin: auto;
         display: flex;
         flex-direction: column;
-        height: 1000px;
-        background: linear-gradient(to bottom, yellow,red);
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    .goal-container,
+    .form-container,
+    .team-container,
+    .source-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding: 50px 0px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        background-repeat: no-repeat;
+        background-position: center;
+        color: rgb(20, 20, 20);
+        font-size: 18px;
+    }
+    .goal-container {
+        background-image: url("../assets/bckg1.jpg");
+    }
+    .form-container {
+        background-image: url("../assets/bckg2.jpg");
+    }
+    .team-container {
+        background-image: url("../assets/bckg4.jpg");
+    }
+    .source-container {
+        background-image: url("../assets/bckg3.jpg");
+    }
+    .goal-container-helper {
+        padding: 0 50px;
+    }
+    p {
+        font-size: 22px;
+    }
+    li {
+        padding: 10px 0;
+    }
+    .form-step {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        max-width: 700px;
+        height: 100%;
+    }
+    span {
+        margin-bottom: 20px;
+    }
+    .footer {
+        max-width: 768px;
+        margin: auto;
+        display: flex;
+        flex-direction: row;
+        height: 50px;
     }
 }

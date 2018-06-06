@@ -2,13 +2,14 @@
 import React ,{Component} from 'react'
 
 
-class Footer extends Component {
+class Source extends Component {
     render() {
         return (
-            <div className='footer'>
+            <div className='source-container'>
+              
             </div>
         )
     }
 }
 
-export default Footer
+export default Source

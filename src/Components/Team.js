@@ -2,13 +2,14 @@
 import React ,{Component} from 'react'
 
 
-class Footer extends Component {
+class Team extends Component {
     render() {
         return (
-            <div className='footer'>
+            <div className='team-container'>
+            Ktoś
             </div>
         )
     }
 }
 
-export default Footer
+export default Team
