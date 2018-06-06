@@ -1,5 +1,6 @@
 // dependencies
 import React ,{Component} from 'react'
+import axios from 'axios'
 import $ from 'jquery'
 
 class Quest extends Component {
@@ -15,8 +16,7 @@ class Quest extends Component {
     nextQuestionHandler = () => {
         const answers = this.state.answers
         let questionNumber = this.state.questionNumber
-
-        //console.log(answers)
+        let formStep = this.state.formStep
 
         if($('input[name='+questionNumber+']').attr('type') === 'radio'){
             answers[Number(questionNumber)-1] = $('input[name='+questionNumber+']:checked').val()
@@ -28,13 +28,25 @@ class Quest extends Component {
             answers[Number(questionNumber)-1] = $('select[name='+questionNumber+']').val()
         }
         
-        console.log(answers)
+        //console.log(answers[Number(questionNumber)-1])
 
-        if(this.state.answers[9] === document.getElementById('q10a1').value) {
-            questionNumber=17
-         }else {
-            questionNumber++
-         }
+        if(typeof answers[Number(questionNumber)-1] === 'undefined'){
+            alert('Zaznacz odpowiedź')
+        }else {
+            if(this.state.answers[9] === document.getElementById('q10a1').value && (Number(questionNumber)===10)) {
+               questionNumber=17
+            }else {
+               questionNumber++
+            }
+            if((this.state.answers[22] === document.getElementById('q23a2').value && (Number(questionNumber)===23)) || Number(answers[1])>2000 || Number(answers[1])<1988 ) {
+                questionNumber = 27
+            }
+            if(!(Number(questionNumber)<27)) {
+                formStep = 3
+                questionNumber = 0
+            }
+        }
+        
         
         $(function(){
             $('.question-container').hide()
@@ -43,7 +55,8 @@ class Quest extends Component {
 
         this.setState({
             answers: answers,
-            questionNumber: questionNumber
+            questionNumber: questionNumber,
+            formStep: formStep
         })
         
     }
@@ -122,13 +135,34 @@ class Quest extends Component {
         let answers = this.state.answers
         var temp = e.target.id.indexOf('inne')
         var temp1 = e.target.id.slice(0,temp)
-        console.log(temp,temp1)
+
         $('#'+temp1).attr('value',e.target.value)        
         answers[Number(e.target.name)-1] = e.target.value
 
         this.setState({
             answers: answers
         })
+    }
+
+    sendDate = () => {
+        const answers = this.state.answers
+        console.log(answers)
+        $.ajax({
+            type: "POST",
+            url: 'http://student.agh.edu.pl/~kista//api.php',
+            data: {
+                answers
+            }
+        })
+        .done(function() {
+            alert( "second success" );
+        })
+        .fail(function() {
+            alert( "error" );
+        })
+        .always(function() {
+            alert( "finished" );
+        });
     }
 
 
@@ -461,13 +495,24 @@ class Quest extends Component {
             </div>
         :null
 
-        const backButton = formStep === 2 ? <button onClick={this.backFormHandler}>Wstecz</button>:null
+        const thirdStep = formStep === 3
+        ? 
+            <div className='form-step' ref='thirdStep'>
+                <span>
+                {this.sendDate()}
+                Dziękujemy za wypełnienie ankiety
+                </span>
+            </div>
+        :null
+
+        const backButton = formStep === 2 ? <button onClick={this.backFormHandler}>Wyjdź</button>:null
 
         return (
             <div className='form-container'>
                 {firstStep}
                 {secoundStep}
                 {backButton}
+                {thirdStep}
             </div>
         )
     }
