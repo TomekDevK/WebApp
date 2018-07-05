@@ -16,7 +16,7 @@ class Home extends Component {
 
     componentDidMount () {
         let that = this
-        $(window).on('mousemove click', function(e) {
+        $().on('mousemove click', function(e) {
 
             var lMouseX = Math.max(-300, Math.min(300, $(window).width() / 2 - e.clientX));
             var lMouseY = Math.max(-300, Math.min(300, $(window).height() / 2 - e.clientY));
@@ -29,6 +29,11 @@ class Home extends Component {
             })
     
         });
+    }
+
+    componentWillUnmount(){
+        $(window).off('mousemove click')
+
     }
 
     moveBackground = () => {

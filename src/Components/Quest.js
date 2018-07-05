@@ -33,6 +33,9 @@ class Quest extends Component {
             alert('Zaznacz odpowiedź')
         }else {
             questionNumber++
+            if(this.state.answers[4] === document.getElementById('q5a2').value && (Number(questionNumber)===6)) {
+                questionNumber = 10
+            }
             if(this.state.answers[9] === document.getElementById('q10a1').value && (Number(questionNumber)===11)) {
                questionNumber = 17
             }
@@ -63,6 +66,9 @@ class Quest extends Component {
         let questionNumber = this.state.questionNumber
 
         questionNumber--
+        if(this.state.answers[4] === document.getElementById('q5a2').value && (Number(questionNumber)===9)) {
+            questionNumber = 5
+        }
         if(this.state.answers[9] === document.getElementById('q10a1').value && (Number(questionNumber) ===16)) {
             questionNumber=10
         }
@@ -158,7 +164,7 @@ class Quest extends Component {
             alert( "error" );
         })
         .always(function() {
-            window.location = 'http://aplikacjewebowe.c0.pl/#/zasoby'
+            window.location = 'http://aplikacjewebowe.c0.pl/#/'
         });
     }
 
@@ -499,7 +505,7 @@ class Quest extends Component {
                         <p>19. Koszty utrzymania w skali miesiąca:</p>
                         <div className='first-step-input'>
                             <div className='answer-container'>
-                                <input type='range' id='q19a1' name='19' min='0' max='2000' step='50' onChange={this.updateSlider} />
+                                <input type='range' id='q19a1' name='19' min='0' max='5000' step='50' onChange={this.updateSlider} />
                                 <span id='sliderq19'>0</span>
                             </div>
                         </div>

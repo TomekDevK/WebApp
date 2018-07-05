@@ -16,12 +16,6 @@ class Header extends Component {
                 <div className='quest-header'>
                     <Link to='/ankieta'>Ankieta</Link>
                 </div>
-                <div className='team-header'>
-                    <Link to='/zespol'>Nasz zespół</Link>
-                </div>
-                <div className='source-header'>
-                    <Link to='/zasoby'>Źródła i zasoby</Link>
-                </div>
             </div>
         )
     }

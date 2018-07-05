@@ -6,8 +6,6 @@ import {withRouter, Switch, Route} from 'react-router-dom'
 import Home from './Home'
 import Quest from './Quest'
 import Goal from './Goal'
-import Team from './Team'
-import Source from './Source'
 
 
 class Main extends Component {
@@ -15,21 +13,12 @@ class Main extends Component {
        return(
             <div className='main'>
                 <Switch>
-                    <Route exact path='/' render={propr => (
-                        <Home />
-                    )} />
-                    <Route exact path='/ankieta' render={propr => (
-                        <Quest />
-                    )} />
-                    <Route exact path='/celankiety' render={propr => (
-                        <Goal />
-                    )} />
-                    <Route exact path='/zespol' render={propr => (
-                        <Team />
-                    )} />
-                    <Route exact path='/zasoby' render={propr => (
-                        <Source />
-                    )} />
+                    <Route exact path='/' component={Home}
+                     />
+                    <Route exact path='/ankieta' component={Quest}
+                    />
+                    <Route exact path='/celankiety' component={Goal}
+                     />
                 </Switch>
             </div>
        )
